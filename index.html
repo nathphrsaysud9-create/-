@@ -18,6 +18,8 @@
             --mint-fresh: #98ff98;
             --purple-dream: #d9b8ff;
             --shadow-soft: rgba(255, 107, 157, 0.15);
+            --gradient-1: linear-gradient(135deg, #ffcce0, #87ceeb);
+            --gradient-2: linear-gradient(135deg, #ffcce0, #d9b8ff);
         }
         
         /* ===== รีเซ็ตสไตล์ ===== */
@@ -49,8 +51,8 @@
         }
         
         @keyframes floatUp {
-            0% { transform: translateY(0) rotate(0deg); }
-            100% { transform: translateY(-100vh) rotate(20deg); }
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0.8; }
+            100% { transform: translateY(-100px) rotate(20deg); opacity: 0; }
         }
         
         @keyframes heartbeat {
@@ -85,21 +87,58 @@
             100% { transform: scale(1); opacity: 1; }
         }
         
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 107, 157, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 107, 157, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 107, 157, 0); }
+        }
+        
+        @keyframes shine {
+            0% { left: -150%; }
+            100% { left: 150%; }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
         /* ===== คอนเทนเนอร์หลัก ===== */
         .container {
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             border-radius: 35px;
-            padding: 35px 30px;
-            max-width: 800px;
+            padding: 40px 35px;
+            max-width: 850px;
             width: 100%;
             box-shadow: 
-                0 20px 60px var(--shadow-soft),
-                inset 0 0 0 3px white;
+                0 25px 70px var(--shadow-soft),
+                inset 0 0 0 3px white,
+                0 0 30px rgba(255, 182, 193, 0.3);
             border: 3px solid var(--pink-light);
             position: relative;
             z-index: 10;
-            animation: bounceIn 0.8s ease-out;
+            animation: bounceIn 0.8s ease-out, fadeInUp 0.8s ease-out;
             margin: 10px;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg, 
+                transparent 30%, 
+                rgba(255, 255, 255, 0.1) 50%, 
+                transparent 70%
+            );
+            transform: rotate(45deg);
+            animation: shine 8s infinite linear;
+            z-index: -1;
         }
         
         /* ===== ฮีดเดอร์ ===== */
@@ -113,9 +152,10 @@
             font-size: 4.5rem;
             margin-bottom: 15px;
             display: inline-block;
-            animation: wobble 2s ease-in-out infinite;
+            animation: wobble 2s ease-in-out infinite, pulse 2s infinite;
             cursor: pointer;
             transition: transform 0.3s;
+            filter: drop-shadow(0 5px 15px rgba(255, 107, 157, 0.5));
         }
         
         .sad-face:hover {
@@ -129,33 +169,59 @@
             margin-bottom: 10px;
             text-shadow: 3px 3px 0 var(--pink-light);
             line-height: 1.2;
+            background: linear-gradient(90deg, #ff6b9d, #ffa8c0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .subtitle {
             color: var(--blue-sky);
             font-size: 1.4rem;
-            background: rgba(135, 206, 235, 0.1);
-            padding: 8px 20px;
+            background: rgba(135, 206, 235, 0.15);
+            padding: 10px 25px;
             border-radius: 50px;
             display: inline-block;
             border: 2px dotted var(--blue-sky);
+            backdrop-filter: blur(5px);
+            margin-top: 10px;
         }
         
         /* ===== ข้อความขอโทษ ===== */
         .apology-box {
-            background: linear-gradient(135deg, #fff5f9, #fff);
+            background: linear-gradient(135deg, rgba(255, 245, 249, 0.9), rgba(255, 255, 255, 0.9));
             border-radius: 25px;
             padding: 35px;
             margin-bottom: 35px;
             position: relative;
-            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.2);
-            border: 2px dashed var(--pink-heart);
+            box-shadow: 0 15px 35px rgba(255, 182, 193, 0.25);
+            border: 2px solid transparent;
+            background-clip: padding-box;
             transition: all 0.4s;
+            overflow: hidden;
+        }
+        
+        .apology-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 25px;
+            padding: 2px;
+            background: var(--gradient-1);
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
         }
         
         .apology-box:hover {
-            transform: translateY(-5px) rotate(0.5deg);
-            box-shadow: 0 15px 40px rgba(255, 182, 193, 0.3);
+            transform: translateY(-8px) rotate(0.5deg);
+            box-shadow: 0 25px 50px rgba(255, 182, 193, 0.35);
         }
         
         .message-title {
@@ -176,13 +242,19 @@
         
         .text-bubble {
             background: var(--pink-light);
-            padding: 10px 20px;
+            padding: 15px 25px;
             border-radius: 20px 20px 20px 5px;
             margin: 15px 0;
             display: inline-block;
             max-width: 90%;
             position: relative;
             animation: messagePop 0.5s ease-out;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .text-bubble:hover {
+            transform: translateY(-3px);
         }
         
         .text-bubble::after {
@@ -204,6 +276,16 @@
             border-radius: 5px;
             font-weight: bold;
             color: #333;
+            position: relative;
+        }
+        
+        .highlight::before {
+            content: '✨';
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.8rem;
         }
         
         .signature {
@@ -214,6 +296,18 @@
             margin-top: 30px;
             padding-top: 15px;
             border-top: 2px dotted var(--pink-light);
+            position: relative;
+            padding-right: 50px;
+        }
+        
+        .signature::after {
+            content: '💌';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+            animation: wobble 3s infinite;
         }
         
         /* ===== คำสัญญาน่ารัก ===== */
@@ -230,6 +324,10 @@
             gap: 15px;
             text-align: center;
             justify-content: center;
+            background: linear-gradient(90deg, #d9b8ff, #cd84f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .promises-grid {
@@ -239,16 +337,17 @@
         }
         
         .promise-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 20px;
             padding: 25px 20px;
             text-align: center;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             border: 2px solid transparent;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(5px);
         }
         
         .promise-card::before {
@@ -258,13 +357,28 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: linear-gradient(to right, var(--pink-heart), var(--purple-dream));
+            background: var(--gradient-2);
         }
         
         .promise-card:hover {
             transform: translateY(-12px) scale(1.03);
-            box-shadow: 0 20px 40px rgba(216, 184, 255, 0.2);
+            box-shadow: 0 25px 45px rgba(216, 184, 255, 0.25);
             border-color: var(--purple-dream);
+        }
+        
+        .promise-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.7s;
+        }
+        
+        .promise-card:hover::after {
+            left: 100%;
         }
         
         .promise-icon {
@@ -272,22 +386,27 @@
             margin-bottom: 15px;
             display: inline-block;
             animation: floatUp 3s ease-in-out infinite alternate;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
         }
         
         .promise-text {
             font-size: 1.2rem;
             color: #555;
             line-height: 1.5;
+            position: relative;
+            z-index: 2;
         }
         
         /* ===== ปุ่มน่ารัก ===== */
         .interactive-section {
-            background: linear-gradient(to right, #f8f9ff, #fff9f9);
+            background: linear-gradient(135deg, rgba(248, 249, 255, 0.9), rgba(255, 249, 249, 0.9));
             border-radius: 25px;
             padding: 30px;
             margin-bottom: 35px;
             position: relative;
             overflow: hidden;
+            border: 2px solid transparent;
+            background-clip: padding-box;
         }
         
         .interactive-section::before {
@@ -298,6 +417,24 @@
             width: 200%;
             height: 200%;
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffb3d1' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: 0;
+        }
+        
+        .interactive-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 25px;
+            padding: 2px;
+            background: var(--gradient-2);
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
             z-index: 0;
         }
         
@@ -332,46 +469,49 @@
             align-items: center;
             gap: 15px;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
             min-width: 220px;
             justify-content: center;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(5px);
+            z-index: 2;
         }
         
-        .action-btn::after {
+        .action-btn::before {
             content: "";
             position: absolute;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.7s;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
         }
         
-        .action-btn:hover::after {
-            left: 100%;
+        .action-btn:hover::before {
+            transform: translateX(100%);
         }
         
         .forgive-btn {
-            background: linear-gradient(to right, #ff85a2, #ff6b9d);
+            background: linear-gradient(135deg, #ff85a2, #ff6b9d);
             color: white;
         }
         
         .hug-btn {
-            background: linear-gradient(to right, #87ceeb, #70a1ff);
+            background: linear-gradient(135deg, #87ceeb, #70a1ff);
             color: white;
         }
         
         .cute-btn {
-            background: linear-gradient(to right, var(--purple-dream), #cd84f1);
+            background: linear-gradient(135deg, var(--purple-dream), #cd84f1);
             color: white;
         }
         
         .action-btn:hover {
-            transform: translateY(-7px) scale(1.05);
-            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.2);
         }
         
         .action-btn:active {
@@ -379,8 +519,8 @@
         }
         
         .response-area {
-            min-height: 130px;
-            background: rgba(255, 255, 255, 0.9);
+            min-height: 150px;
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 25px;
             padding: 25px;
             display: flex;
@@ -388,45 +528,71 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            border: 3px solid var(--pink-light);
+            border: 3px solid transparent;
+            background-clip: padding-box;
             transition: all 0.5s;
             position: relative;
             z-index: 1;
             overflow: hidden;
+            animation: fadeInUp 0.5s ease-out;
         }
         
         .response-area::before {
-            content: "";
+            content: '';
             position: absolute;
-            width: 150%;
-            height: 50px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
             top: 0;
-            left: -150%;
-            transform: rotate(45deg);
-            animation: shine 3s infinite;
-        }
-        
-        @keyframes shine {
-            0% { left: -150%; }
-            100% { left: 150%; }
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 25px;
+            padding: 3px;
+            background: var(--gradient-1);
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
         }
         
         .response-text {
             font-size: 1.5rem;
             color: #555;
             margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
         }
         
         /* ===== เกจให้อภัย ===== */
         .forgiveness-meter {
-            background: white;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 25px;
             padding: 30px;
             margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
             position: relative;
             z-index: 1;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            backdrop-filter: blur(5px);
+        }
+        
+        .forgiveness-meter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 25px;
+            padding: 2px;
+            background: var(--gradient-1);
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
         }
         
         .meter-title {
@@ -434,6 +600,10 @@
             font-size: 1.8rem;
             margin-bottom: 25px;
             text-align: center;
+            background: linear-gradient(90deg, #ff6b9d, #ffa8c0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .meter-container {
@@ -444,12 +614,12 @@
             margin-bottom: 25px;
             position: relative;
             border: 3px solid white;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.1), 0 5px 15px rgba(0,0,0,0.1);
         }
         
         .meter-fill {
             height: 100%;
-            background: linear-gradient(to right, var(--mint-fresh), #7cfc00, #32cd32, #228b22);
+            background: linear-gradient(135deg, var(--mint-fresh), #7cfc00, #32cd32, #228b22);
             border-radius: 25px;
             width: 10%;
             transition: width 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -460,7 +630,21 @@
             color: white;
             font-weight: bold;
             font-size: 1.2rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .meter-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: translateX(-100%);
+            animation: shine 2s infinite;
         }
         
         .meter-controls {
@@ -474,7 +658,7 @@
             padding: 14px 30px;
             border: none;
             border-radius: 50px;
-            background: var(--pink-heart);
+            background: linear-gradient(135deg, var(--pink-heart), #ff8fab);
             color: white;
             font-family: 'Itim', cursive;
             font-size: 1.1rem;
@@ -483,16 +667,35 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+            box-shadow: 0 10px 20px rgba(255, 107, 157, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+        }
+        
+        .meter-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .meter-btn:hover::before {
+            transform: translateX(100%);
         }
         
         .meter-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(255, 107, 157, 0.4);
+            transform: translateY(-7px);
+            box-shadow: 0 15px 25px rgba(255, 107, 157, 0.4);
         }
         
         .meter-btn:active {
-            transform: translateY(0);
+            transform: translateY(-3px);
         }
         
         /* ===== ฟุตเตอร์ ===== */
@@ -513,10 +716,18 @@
             margin: 0 10px;
             cursor: pointer;
             transition: transform 0.3s;
+            filter: drop-shadow(0 5px 10px rgba(255, 107, 157, 0.3));
         }
         
         .healing-heart:hover {
             animation: heartbeat 1s;
+        }
+        
+        .footer-message {
+            margin-top: 15px;
+            font-size: 1.1rem;
+            color: var(--pink-heart);
+            animation: fadeInUp 1s ease-out;
         }
         
         /* ===== องค์ประกอบลอย ===== */
@@ -526,6 +737,7 @@
             z-index: 1;
             pointer-events: none;
             animation: floatUp 8s linear forwards;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
         }
         
         /* ===== โหมดมือถือ ===== */
@@ -533,6 +745,7 @@
             .container {
                 padding: 25px 20px;
                 border-radius: 25px;
+                margin: 5px;
             }
             
             .title {
@@ -553,26 +766,34 @@
             
             .promises-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
             }
             
             .action-btn {
                 min-width: 100%;
                 padding: 16px 25px;
+                font-size: 1.2rem;
             }
             
             .buttons-container {
                 flex-direction: column;
                 align-items: center;
+                gap: 15px;
             }
             
             .meter-controls {
                 flex-direction: column;
                 align-items: center;
+                gap: 15px;
             }
             
             .meter-btn {
                 width: 80%;
                 justify-content: center;
+            }
+            
+            .interactive-section {
+                padding: 25px 20px;
             }
         }
         
@@ -592,7 +813,19 @@
             .action-btn {
                 font-size: 1.1rem;
             }
+            
+            .subtitle {
+                font-size: 1.2rem;
+                padding: 8px 20px;
+            }
         }
+        
+        /* ===== แอนิเมชันแบบสุ่มสำหรับองค์ประกอบ ===== */
+        .animate-delay-1 { animation-delay: 0.1s; }
+        .animate-delay-2 { animation-delay: 0.2s; }
+        .animate-delay-3 { animation-delay: 0.3s; }
+        .animate-delay-4 { animation-delay: 0.4s; }
+        .animate-delay-5 { animation-delay: 0.5s; }
     </style>
 </head>
 <body>
@@ -615,17 +848,17 @@
             </h2>
             
             <div class="apology-text">
-                <div class="text-bubble">
+                <div class="text-bubble animate-delay-1">
                     <span class="highlight">เฮ้ยยย... เค้าขอโทษจริงๆนะ</span> ที่เมื่อวานฉันทำตัวไม่ดีเลย 
                     รู้สึกว่าเหมือนเค้าทำให้เธอเสียใจมากเลยอ่ะ
                 </div>
                 
-                <div class="text-bubble">
+                <div class="text-bubble animate-delay-2">
                     เค้าเป็นห่วงเธอนะ รู้ไหม? เวลาเห็นเธอไม่ยิ้มเนี่ย <span class="highlight">ใจเค้ามันเจ็บตามไปด้วยเลย</span>
                     เค้าควรจะเข้าใจความรู้สึกเธอมากกว่านี้
                 </div>
                 
-                <div class="text-bubble">
+                <div class="text-bubble animate-delay-3">
                     พอรู้ว่าเธอไม่มีความสุขเนี่ย <span class="highlight">เค้ารู้สึกแย่กับตัวเองมากเลย</span> 
                     สัญญาว่าเค้าจะไม่ทำแบบนี้อีกแล้วนะ เค้าจะพยายามปรับปรุงตัว
                 </div>
@@ -644,22 +877,22 @@
             </h2>
             
             <div class="promises-grid">
-                <div class="promise-card" id="promise1">
+                <div class="promise-card animate-delay-1" id="promise1">
                     <div class="promise-icon">🤗</div>
                     <p class="promise-text">จะกอดเธอให้มากขึ้น ดูแลความรู้สึกเธอให้ดีกว่าเดิม</p>
                 </div>
                 
-                <div class="promise-card" id="promise2">
+                <div class="promise-card animate-delay-2" id="promise2">
                     <div class="promise-icon">👂❤️</div>
                     <p class="promise-text">จะรับฟังเธอจริงๆ ไม่ใช่แค่ฟังผ่านๆ หู</p>
                 </div>
                 
-                <div class="promise-card" id="promise3">
+                <div class="promise-card animate-delay-3" id="promise3">
                     <div class="promise-icon">🍫🎁</div>
                     <p class="promise-text">จะเซอร์ไพรส์เธอด้วยของน่ารักๆ ให้เธอยิ้มได้อีกครั้ง</p>
                 </div>
                 
-                <div class="promise-card" id="promise4">
+                <div class="promise-card animate-delay-4" id="promise4">
                     <div class="promise-icon">🤝💬</div>
                     <p class="promise-text">จะคุยกันดีๆ ไม่เก็บอะไรไว้คนเดียวนะ</p>
                 </div>
@@ -704,14 +937,14 @@
             
             <div class="response-area" id="responseArea">
                 <p class="response-text">เค้ารอคำตอบจากเธออยู่นะ... เค้าจะรอ 😊</p>
-                <div style="font-size: 3rem; margin-top: 10px;">💘</div>
+                <div style="font-size: 3rem; margin-top: 10px; animation: heartbeat 2s infinite;">💘</div>
             </div>
         </section>
         
         <!-- ฟุตเตอร์ -->
         <footer class="footer">
             <p>เว็บนี้ทำขึ้นด้วยความจริงใจ อยากให้เธอรู้ว่าเค้ารักเธอมากๆ</p>
-            <p style="margin-top: 15px;">
+            <p class="footer-message" id="footerMessage">
                 สัญญาว่าจะทำให้เธอยิ้มได้อีกครั้ง 
                 <span class="healing-heart" id="footerHeart">❤️</span>
                 รักเธอนะ สุดๆ เลยอ่ะ...
@@ -730,12 +963,18 @@
         const hugBtn = document.getElementById('hugBtn');
         const cuteBtn = document.getElementById('cuteBtn');
         const responseArea = document.getElementById('responseArea');
+        const responseText = document.querySelector('.response-text');
         const sadFace = document.getElementById('sadFace');
         const footerHeart = document.getElementById('footerHeart');
+        const footerMessage = document.getElementById('footerMessage');
         const promiseCards = document.querySelectorAll('.promise-card');
+        const apologyBox = document.querySelector('.apology-box');
+        const container = document.querySelector('.container');
         
         // ===== ค่าตั้งต้น =====
         let forgivenessLevel = 10;
+        let clickCount = 0;
+        let isFullyForgiven = false;
         let cuteMessages = [
             "รู้มั้ยว่าเธอน่ารักที่สุดเลยนะ! เค้าจะไม่ทำให้เธอเสียใจอีกแล้ว",
             "ขอโทษจริงๆ นะ... คราวหน้าเค้าจะทำตัวดีกว่านี้ สัญญาเลย!",
@@ -768,6 +1007,7 @@
                     item.style.fontSize = (Math.random() * 25 + 25) + 'px';
                     item.style.opacity = 0.7 + Math.random() * 0.3;
                     item.style.animationDuration = (Math.random() * 5 + 8) + 's';
+                    item.style.color = getRandomColor();
                     
                     floatingContainer.appendChild(item);
                     
@@ -781,6 +1021,15 @@
             }
         }
         
+        // ===== สุ่มสี =====
+        function getRandomColor() {
+            const colors = [
+                '#ff6b9d', '#87ceeb', '#ffd700', 
+                '#98ff98', '#d9b8ff', '#ffa8c0'
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+        
         // ===== อัพเดทเกจ =====
         function updateMeter() {
             // คำนวณเปอร์เซ็นต์
@@ -790,16 +1039,16 @@
             // เปลี่ยนข้อความตามระดับ
             if (percent < 20) {
                 meterFill.textContent = "ยังโกรธอยู่เลยย... 🥺";
-                meterFill.style.background = "linear-gradient(to right, #ff6b6b, #ff4757)";
+                meterFill.style.background = "linear-gradient(135deg, #ff6b6b, #ff4757)";
             } else if (percent < 50) {
                 meterFill.textContent = "เริ่มใจอ่อนแล้วหรอ? 😊";
-                meterFill.style.background = "linear-gradient(to right, #ffa502, #ff7f00)";
+                meterFill.style.background = "linear-gradient(135deg, #ffa502, #ff7f00)";
             } else if (percent < 80) {
                 meterFill.textContent = "เกือบให้อภัยแล้วว! 💖";
-                meterFill.style.background = "linear-gradient(to right, #2ed573, #1dd1a1)";
+                meterFill.style.background = "linear-gradient(135deg, #2ed573, #1dd1a1)";
             } else {
                 meterFill.textContent = "ให้อภัยเธอแล้ววว! 🎉💝";
-                meterFill.style.background = "linear-gradient(to right, #7bed9f, #2ed573, #1dd1a1)";
+                meterFill.style.background = "linear-gradient(135deg, #7bed9f, #2ed573, #1dd1a1)";
             }
             
             // เอฟเฟกต์น่ารัก
@@ -810,33 +1059,39 @@
         }
         
         // ===== แสดงข้อความตอบกลับ =====
-        function showResponse(message, emoji = '💖') {
-            responseArea.innerHTML = `
-                <p class="response-text">${message}</p>
-                <div style="font-size: 3.5rem; margin-top: 10px; animation: heartbeat 1.2s infinite;">${emoji}</div>
-            `;
+        function showResponse(message, emoji = '💖', bgColor = '') {
+            const emojiElement = document.createElement('div');
+            emojiElement.style.fontSize = '3.5rem';
+            emojiElement.style.marginTop = '10px';
+            emojiElement.style.animation = 'heartbeat 1.2s infinite';
+            emojiElement.innerHTML = emoji;
+            
+            responseArea.innerHTML = '';
+            responseArea.appendChild(emojiElement);
+            
+            const textElement = document.createElement('p');
+            textElement.className = 'response-text';
+            textElement.textContent = message;
+            responseArea.insertBefore(textElement, emojiElement);
             
             // เปลี่ยนสีพื้นหลังตามข้อความ
             if (message.includes('ให้อภัย') || message.includes('ยกโทษ')) {
                 responseArea.style.background = 'linear-gradient(135deg, #d4fc79, #96e6a1)';
-                responseArea.style.borderColor = '#2ed573';
-                
-                // สร้างหัวใจลอยเยอะๆ
-                for (let i = 0; i < 20; i++) {
-                    setTimeout(() => createFloatingHeart(), i * 100);
-                }
+                createConfetti();
             } else if (message.includes('กอด')) {
                 responseArea.style.background = 'linear-gradient(135deg, #a1c4fd, #c2e9fb)';
-                responseArea.style.borderColor = '#70a1ff';
-            } else {
+            } else if (message.includes('เศร้า') || message.includes('โกรธ')) {
                 responseArea.style.background = 'linear-gradient(135deg, #ffd6e7, #ffcce0)';
-                responseArea.style.borderColor = '#ff6b9d';
+            } else if (bgColor) {
+                responseArea.style.background = bgColor;
+            } else {
+                responseArea.style.background = 'linear-gradient(135deg, #ffe8f0, #fff)';
             }
             
             // เอฟเฟกต์สั่นนิดหน่อย
             responseArea.style.animation = 'none';
             setTimeout(() => {
-                responseArea.style.animation = 'wobble 0.5s';
+                responseArea.style.animation = 'wobble 0.5s, fadeInUp 0.5s';
             }, 10);
         }
         
@@ -852,6 +1107,7 @@
             heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
             heart.style.color = '#ff6b9d';
             heart.style.zIndex = '5';
+            heart.style.filter = 'drop-shadow(0 5px 10px rgba(255, 107, 157, 0.3))';
             
             floatingContainer.appendChild(heart);
             
@@ -887,21 +1143,68 @@
             }
         }
         
+        // ===== สร้างคอนเฟตติ =====
+        function createConfetti() {
+            const confettiEmojis = ['🎉', '🎊', '✨', '🌟', '💫', '🥳', '🎈', '🎁'];
+            
+            for (let i = 0; i < 25; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'floating';
+                    confetti.innerHTML = confettiEmojis[Math.floor(Math.random() * confettiEmojis.length)];
+                    
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '100vh';
+                    confetti.style.fontSize = (Math.random() * 25 + 25) + 'px';
+                    confetti.style.opacity = 0.9;
+                    confetti.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                    confetti.style.zIndex = '5';
+                    
+                    floatingContainer.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        if (confetti.parentNode) {
+                            confetti.parentNode.removeChild(confetti);
+                        }
+                    }, 7000);
+                }, i * 50);
+            }
+        }
+        
         // ===== ตั้งค่าอีเวนต์ =====
         function setupEventListeners() {
             // ปุ่มเพิ่มเลเวลให้อภัย
             increaseBtn.addEventListener('click', function() {
+                clickCount++;
                 forgivenessLevel += 12;
                 if (forgivenessLevel > 100) {
                     forgivenessLevel = 100;
-                    showResponse('เย้ยยย! ขอบคุณที่ให้อภัยเค้านะ ฉันดีใจมากกก! 🥳🎉', '💝');
-                    sadFace.innerHTML = '🥰💖';
-                    sadFace.style.animation = 'heartbeat 1s infinite';
+                    if (!isFullyForgiven) {
+                        isFullyForgiven = true;
+                        showResponse('เย้ยยย! ขอบคุณที่ให้อภัยเค้านะ ฉันดีใจมากกก! 🥳🎉', '💝');
+                        sadFace.innerHTML = '🥰💖✨';
+                        sadFace.style.animation = 'heartbeat 1s infinite, pulse 2s infinite';
+                        document.body.style.animation = 'gradientMove 5s ease infinite';
+                        
+                        // เปลี่ยนข้อความฟุตเตอร์
+                        footerMessage.innerHTML = `
+                            ขอบคุณที่ให้อภัยเค้านะ! ฉันสัญญาว่าจะทำตัวดีๆ ให้เธอเห็น 
+                            <span class="healing-heart" id="footerHeart">💝</span>
+                            รักเธอมากที่สุดเลยจ้า!
+                        `;
+                        
+                        // เอฟเฟกต์พิเศษ
+                        container.style.boxShadow = '0 0 50px rgba(255, 107, 157, 0.5), inset 0 0 0 3px white';
+                        createConfetti();
+                        createFloatingCuties(30, '💖');
+                        createFloatingCuties(20, '✨');
+                    }
                 } else {
                     const messages = [
                         "ขอบคุณนะที่เริ่มให้อภัยฉันแล้ว 😊",
                         "ดีใจจังเลยย! เค้าจะทำตัวดีๆ ให้เธอดู 💪",
-                        "เธอใจดีที่สุดเลยย! เค้ารักเธอนะ 💖"
+                        "เธอใจดีที่สุดเลยย! เค้ารักเธอนะ 💖",
+                        "ว้าว! เธอใจดีมากเลย ขอบคุณนะคะ 😊"
                     ];
                     const randomMsg = messages[Math.floor(Math.random() * messages.length)];
                     showResponse(randomMsg, '🤗');
@@ -909,35 +1212,36 @@
                 updateMeter();
                 
                 // เอฟเฟกต์ปุ่ม
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 200);
+                animateButton(this);
             });
             
             // ปุ่มลดเลเวล (ถ้าเธอโกรธ)
             decreaseBtn.addEventListener('click', function() {
+                clickCount++;
                 forgivenessLevel -= 8;
                 if (forgivenessLevel < 0) forgivenessLevel = 0;
                 
                 if (forgivenessLevel <= 5) {
                     showResponse('อ่าา... เค้าทำให้เธอโกรธมากเลยสินะ เค้าขอโทษจริงๆ 😭', '💔');
                     sadFace.innerHTML = '😭💔';
+                    sadFace.style.animation = 'wobble 0.5s, pulse 1s infinite';
+                    
+                    // สร้างน้ำตาลอย
+                    createFloatingCuties(10, '💧');
                 } else {
                     showResponse('เข้าใจๆ... เค้าคงทำให้เธอเสียใจมากเลย เค้าจะพยายามมากขึ้นนะ 🥺', '🤞');
                 }
                 updateMeter();
                 
                 // เอฟเฟกต์ปุ่ม
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 200);
+                animateButton(this);
             });
             
             // ปุ่มให้อภัย
             forgiveBtn.addEventListener('click', function() {
+                clickCount++;
                 forgivenessLevel = 100;
+                isFullyForgiven = true;
                 updateMeter();
                 showResponse(
                     'ว้าววว! ขอบคุณที่ให้อภัยเค้านะ! ฉันสัญญาว่าจะทำตัวดีๆ ให้เธอเห็นเลย! 🥰💝',
@@ -946,19 +1250,35 @@
                 
                 // เปลี่ยนหน้าตาเศร้าให้เป็นยิ้ม
                 sadFace.innerHTML = '🥰💖✨';
-                sadFace.style.animation = 'heartbeat 1.2s infinite';
+                sadFace.style.animation = 'heartbeat 1.2s infinite, pulse 2s infinite';
                 
                 // สร้างของน่ารักลอยเยอะๆ
                 createFloatingCuties(25, '💖');
                 createFloatingCuties(15, '✨');
+                createConfetti();
                 
                 // เปลี่ยนหัวใจในฟุตเตอร์
                 footerHeart.innerHTML = '💝';
                 footerHeart.style.animation = 'heartbeat 1s infinite';
+                
+                // เปลี่ยนข้อความฟุตเตอร์
+                footerMessage.innerHTML = `
+                    เย้! ขอบคุณที่ให้อภัยเค้านะ เค้าจะรักษาสัญญาทุกข้อเลย! 
+                    <span class="healing-heart" id="footerHeart">💝</span>
+                    รักเธอที่สุดในโลกเลยย!
+                `;
+                
+                // เอฟเฟกต์พิเศษ
+                container.style.boxShadow = '0 0 60px rgba(255, 107, 157, 0.6), inset 0 0 0 3px white';
+                document.body.style.animation = 'gradientMove 3s ease infinite';
+                
+                // เอฟเฟกต์ปุ่ม
+                animateButton(this);
             });
             
             // ปุ่มขอกอด
             hugBtn.addEventListener('click', function() {
+                clickCount++;
                 const randomHugMsg = hugMessages[Math.floor(Math.random() * hugMessages.length)];
                 showResponse(randomHugMsg, '🤗');
                 
@@ -966,15 +1286,18 @@
                 createFloatingCuties(10, '🤗');
                 createFloatingCuties(8, '💕');
                 
+                // เพิ่มเลเวลให้อภัยเล็กน้อย
+                forgivenessLevel += 5;
+                if (forgivenessLevel > 100) forgivenessLevel = 100;
+                updateMeter();
+                
                 // เอฟเฟกต์ปุ่ม
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 200);
+                animateButton(this);
             });
             
             // ปุ่มทำตาปริบๆ
             cuteBtn.addEventListener('click', function() {
+                clickCount++;
                 const randomCuteMsg = cuteMessages[Math.floor(Math.random() * cuteMessages.length)];
                 showResponse(randomCuteMsg + ' 🥺👉👈', '😽');
                 
@@ -982,19 +1305,38 @@
                 createFloatingCuties(12, '🥺');
                 createFloatingCuties(10, '😽');
                 
+                // เพิ่มเลเวลให้อภัยเล็กน้อย
+                forgivenessLevel += 3;
+                if (forgivenessLevel > 100) forgivenessLevel = 100;
+                updateMeter();
+                
                 // ทำตาปริบๆ จริงๆ
-                cuteBtn.innerHTML = '<i class="fas fa-cat"></i> กำลังทำตาปริบๆ...';
+                const originalText = cuteBtn.innerHTML;
+                cuteBtn.innerHTML = '<i class="fas fa-cat"></i> กำลังทำตาปริบๆ... 🥺';
                 cuteBtn.disabled = true;
                 
-                setTimeout(() => {
-                    cuteBtn.innerHTML = '<i class="fas fa-cat"></i> ทำตาปริบๆ ขอโทษ';
-                    cuteBtn.disabled = false;
-                }, 1500);
+                // เพิ่มเอฟเฟกต์การกะพริบ
+                let blinkCount = 0;
+                const blinkInterval = setInterval(() => {
+                    cuteBtn.style.opacity = cuteBtn.style.opacity === '0.7' ? '1' : '0.7';
+                    blinkCount++;
+                    
+                    if (blinkCount > 6) {
+                        clearInterval(blinkInterval);
+                        cuteBtn.innerHTML = originalText;
+                        cuteBtn.disabled = false;
+                        cuteBtn.style.opacity = '1';
+                    }
+                }, 200);
+                
+                // เอฟเฟกต์ปุ่ม
+                animateButton(this);
             });
             
             // การ์ดคำสัญญา
             promiseCards.forEach((card, index) => {
                 card.addEventListener('click', function() {
+                    clickCount++;
                     const promises = [
                         "สัญญาว่าจะกอดเธอให้มากกว่านี้แน่นอน! 🤗",
                         "ฉันจะเป็นผู้ฟังที่ดีที่สุดให้เธอเลย 👂❤️",
@@ -1015,11 +1357,15 @@
                     forgivenessLevel += 5;
                     if (forgivenessLevel > 100) forgivenessLevel = 100;
                     updateMeter();
+                    
+                    // สร้างเอฟเฟกต์น่ารัก
+                    createFloatingCuties(3, emojis[index]);
                 });
             });
             
             // หน้าเศร้ากดได้
             sadFace.addEventListener('click', function() {
+                clickCount++;
                 if (this.innerHTML === '🥺💔') {
                     this.innerHTML = '😢💔';
                     showResponse('เค้าเศร้ามากเลยที่ทำให้เธอเสียใจ... ขอโทษจริงๆ นะ', '😢');
@@ -1034,6 +1380,7 @@
             
             // หัวใจในฟุตเตอร์
             footerHeart.addEventListener('click', function() {
+                clickCount++;
                 this.style.animation = 'heartbeat 1s';
                 showResponse('รักเธอมากกก! มากที่สุดเลยนะ 💖', '💘');
                 
@@ -1043,6 +1390,22 @@
                 
                 createFloatingCuties(8, '💘');
             });
+            
+            // กล่องขอโทษก็กดได้
+            apologyBox.addEventListener('click', function() {
+                if (clickCount > 10) {
+                    showResponse('ขอบคุณที่กดเล่นกับหน้านี้นะ! เค้าดีใจมากเลย 😊', '🌟', 'linear-gradient(135deg, #ffd6e7, #fff)');
+                    clickCount = 0;
+                }
+            });
+        }
+        
+        // ===== ฟังก์ชันแอนิเมทปุ่ม =====
+        function animateButton(button) {
+            button.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                button.style.transform = '';
+            }, 200);
         }
         
         // ===== เริ่มต้น =====
@@ -1072,6 +1435,14 @@
                     }, 500);
                 }
             }, 3000);
+            
+            // เพิ่มเอฟเฟกต์พิเศษเมื่อเลื่อน
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.5;
+                
+                container.style.transform = `translateY(${rate * 0.2}px)`;
+            });
         }
         
         // ===== เริ่มเมื่อโหลดหน้าเสร็จ =====
