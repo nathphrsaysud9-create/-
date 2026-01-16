@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เฮ้ยย... ขอโทษนะที่ทำให้เธอเสียใจ 🥺</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Charmonman:wght@700&family=Itim&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ===== ตัวแปรสีสันน่ารักๆ ===== */
+        :root {
+            --pink-heart: #ff6b9d;
+            --pink-light: #ffcce0;
+            --pink-bubble: #ffb3d1;
+            --blue-sky: #87ceeb;
+            --yellow-happy: #ffd700;
+            --mint-fresh: #98ff98;
+            --purple-dream: #d9b8ff;
+            --shadow-soft: rgba(255, 107, 157, 0.15);
+        }
+        
+        /* ===== รีเซ็ตสไตล์ ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Itim', cursive;
+            background: linear-gradient(-45deg, #fff0f5, #f0f8ff, #fff0f5, #e6fff7);
+            background-size: 400% 400%;
+            animation: gradientMove 18s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #555;
+            overflow-x: hidden;
+        }
+        
+        /* ===== อนิเมชันต่างๆ ===== */
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(20deg); }
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            15% { transform: scale(1.2); }
+            30% { transform: scale(1.1); }
+            45% { transform: scale(1.3); }
+            60% { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes wobble {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-3deg); }
+            75% { transform: rotate(3deg); }
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        @keyframes messagePop {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        /* ===== คอนเทนเนอร์หลัก ===== */
+        .container {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 35px;
+            padding: 35px 30px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 
+                0 20px 60px var(--shadow-soft),
+                inset 0 0 0 3px white;
+            border: 3px solid var(--pink-light);
+            position: relative;
+            z-index: 10;
+            animation: bounceIn 0.8s ease-out;
+            margin: 10px;
+        }
+        
+        /* ===== ฮีดเดอร์ ===== */
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+            position: relative;
+        }
+        
+        .sad-face {
+            font-size: 4.5rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            animation: wobble 2s ease-in-out infinite;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .sad-face:hover {
+            animation: heartbeat 1s;
+        }
+        
+        .title {
+            font-family: 'Charmonman', cursive;
+            color: var(--pink-heart);
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 0 var(--pink-light);
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            color: var(--blue-sky);
+            font-size: 1.4rem;
+            background: rgba(135, 206, 235, 0.1);
+            padding: 8px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            border: 2px dotted var(--blue-sky);
+        }
+        
+        /* ===== ข้อความขอโทษ ===== */
+        .apology-box {
+            background: linear-gradient(135deg, #fff5f9, #fff);
+            border-radius: 25px;
+            padding: 35px;
+            margin-bottom: 35px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.2);
+            border: 2px dashed var(--pink-heart);
+            transition: all 0.4s;
+        }
+        
+        .apology-box:hover {
+            transform: translateY(-5px) rotate(0.5deg);
+            box-shadow: 0 15px 40px rgba(255, 182, 193, 0.3);
+        }
+        
+        .message-title {
+            color: var(--pink-heart);
+            font-size: 2rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-family: 'Ma Shan Zheng', cursive;
+        }
+        
+        .apology-text {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            color: #666;
+        }
+        
+        .text-bubble {
+            background: var(--pink-light);
+            padding: 10px 20px;
+            border-radius: 20px 20px 20px 5px;
+            margin: 15px 0;
+            display: inline-block;
+            max-width: 90%;
+            position: relative;
+            animation: messagePop 0.5s ease-out;
+        }
+        
+        .text-bubble::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: var(--pink-light) transparent transparent;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, var(--yellow-happy) 0%, var(--yellow-happy) 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 0.3em;
+            background-position: 0 88%;
+            padding: 2px 5px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .signature {
+            text-align: right;
+            font-family: 'Charmonman', cursive;
+            font-size: 1.8rem;
+            color: var(--pink-heart);
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 2px dotted var(--pink-light);
+        }
+        
+        /* ===== คำสัญญาน่ารัก ===== */
+        .promises-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            color: var(--purple-dream);
+            font-size: 2rem;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-align: center;
+            justify-content: center;
+        }
+        
+        .promises-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+        
+        .promise-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .promise-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--pink-heart), var(--purple-dream));
+        }
+        
+        .promise-card:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(216, 184, 255, 0.2);
+            border-color: var(--purple-dream);
+        }
+        
+        .promise-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            animation: floatUp 3s ease-in-out infinite alternate;
+        }
+        
+        .promise-text {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        /* ===== ปุ่มน่ารัก ===== */
+        .interactive-section {
+            background: linear-gradient(to right, #f8f9ff, #fff9f9);
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 35px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .interactive-section::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffb3d1' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: 0;
+        }
+        
+        .interactive-title {
+            color: var(--pink-heart);
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .action-btn {
+            padding: 18px 35px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-family: 'Itim', cursive;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            min-width: 220px;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .action-btn::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.7s;
+        }
+        
+        .action-btn:hover::after {
+            left: 100%;
+        }
+        
+        .forgive-btn {
+            background: linear-gradient(to right, #ff85a2, #ff6b9d);
+            color: white;
+        }
+        
+        .hug-btn {
+            background: linear-gradient(to right, #87ceeb, #70a1ff);
+            color: white;
+        }
+        
+        .cute-btn {
+            background: linear-gradient(to right, var(--purple-dream), #cd84f1);
+            color: white;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-7px) scale(1.05);
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .action-btn:active {
+            transform: translateY(-3px) scale(1.02);
+        }
+        
+        .response-area {
+            min-height: 130px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border: 3px solid var(--pink-light);
+            transition: all 0.5s;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .response-area::before {
+            content: "";
+            position: absolute;
+            width: 150%;
+            height: 50px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+            top: 0;
+            left: -150%;
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { left: -150%; }
+            100% { left: 150%; }
+        }
+        
+        .response-text {
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        /* ===== เกจให้อภัย ===== */
+        .forgiveness-meter {
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .meter-title {
+            color: var(--pink-heart);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .meter-container {
+            height: 50px;
+            background: #f5f5f5;
+            border-radius: 25px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            position: relative;
+            border: 3px solid white;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .meter-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--mint-fresh), #7cfc00, #32cd32, #228b22);
+            border-radius: 25px;
+            width: 10%;
+            transition: width 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 25px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .meter-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .meter-btn {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 50px;
+            background: var(--pink-heart);
+            color: white;
+            font-family: 'Itim', cursive;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+        }
+        
+        .meter-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 107, 157, 0.4);
+        }
+        
+        .meter-btn:active {
+            transform: translateY(0);
+        }
+        
+        /* ===== ฟุตเตอร์ ===== */
+        .footer {
+            text-align: center;
+            color: #888;
+            font-size: 1.2rem;
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 3px dotted var(--pink-light);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .healing-heart {
+            font-size: 2.5rem;
+            display: inline-block;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .healing-heart:hover {
+            animation: heartbeat 1s;
+        }
+        
+        /* ===== องค์ประกอบลอย ===== */
+        .floating {
+            position: fixed;
+            font-size: 24px;
+            z-index: 1;
+            pointer-events: none;
+            animation: floatUp 8s linear forwards;
+        }
+        
+        /* ===== โหมดมือถือ ===== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px 20px;
+                border-radius: 25px;
+            }
+            
+            .title {
+                font-size: 2.8rem;
+            }
+            
+            .sad-face {
+                font-size: 3.5rem;
+            }
+            
+            .message-title {
+                font-size: 1.8rem;
+            }
+            
+            .apology-text {
+                font-size: 1.2rem;
+            }
+            
+            .promises-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-btn {
+                min-width: 100%;
+                padding: 16px 25px;
+            }
+            
+            .buttons-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .meter-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .meter-btn {
+                width: 80%;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2.3rem;
+            }
+            
+            .apology-box {
+                padding: 25px 20px;
+            }
+            
+            .promise-card {
+                padding: 20px 15px;
+            }
+            
+            .action-btn {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- องค์ประกอบลอยในพื้นหลัง -->
+    <div id="floatingContainer"></div>
+    
+    <!-- คอนเทนเนอร์หลัก -->
+    <div class="container">
+        <!-- ฮีดเดอร์ -->
+        <header class="header">
+            <div class="sad-face" id="sadFace">🥺💔</div>
+            <h1 class="title">เฮ้ยย... ขอโทษนะที่ทำให้เธอเสียใจ</h1>
+            <p class="subtitle">ฉันรู้ว่าฉันทำผิดไปแล้ว อยากให้เธอรู้ว่าฉันเสียใจมากๆ</p>
+        </header>
+        
+        <!-- กล่องข้อความขอโทษ -->
+        <section class="apology-box">
+            <h2 class="message-title">
+                <i class="fas fa-heart-crack"></i> ข้อความจากใจเลยนะ...
+            </h2>
+            
+            <div class="apology-text">
+                <div class="text-bubble">
+                    <span class="highlight">เฮ้ยยย... ฉันขอโทษจริงๆนะ</span> ที่เมื่อวานฉันทำตัวไม่ดีเลย 
+                    รู้สึกว่าเหมือนฉันทำให้เธอเสียใจมากเลยอ่ะ
+                </div>
+                
+                <div class="text-bubble">
+                    ฉันเป็นห่วงเธอนะ รู้ไหม? เวลาเห็นเธอไม่ยิ้มเนี่ย <span class="highlight">ใจฉันมันเจ็บตามไปด้วยเลย</span>
+                    ฉันควรจะเข้าใจความรู้สึกเธอมากกว่านี้
+                </div>
+                
+                <div class="text-bubble">
+                    พอรู้ว่าเธอไม่มีความสุขเนี่ย <span class="highlight">ฉันรู้สึกแย่กับตัวเองมากเลย</span> 
+                    สัญญาว่าฉันจะไม่ทำแบบนี้อีกแล้วนะ ฉันจะพยายามปรับปรุงตัว
+                </div>
+            </div>
+            
+            <div class="signature">
+                จากคนที่คิดถึงเธอมากกกก...<br>
+                <span style="font-size: 2rem; color: var(--pink-heart);">💖 ฉันเองง 💖</span>
+            </div>
+        </section>
+        
+        <!-- คำสัญญาน่ารัก -->
+        <section class="promises-section">
+            <h2 class="section-title">
+                <i class="fas fa-handshake-simple"></i> สัญญาที่ฉันจะทำให้เธอเห็น!
+            </h2>
+            
+            <div class="promises-grid">
+                <div class="promise-card" id="promise1">
+                    <div class="promise-icon">🤗</div>
+                    <p class="promise-text">จะกอดเธอให้มากขึ้น ดูแลความรู้สึกเธอให้ดีกว่าเดิม</p>
+                </div>
+                
+                <div class="promise-card" id="promise2">
+                    <div class="promise-icon">👂❤️</div>
+                    <p class="promise-text">จะรับฟังเธอจริงๆ ไม่ใช่แค่ฟังผ่านๆ หู</p>
+                </div>
+                
+                <div class="promise-card" id="promise3">
+                    <div class="promise-icon">🍫🎁</div>
+                    <p class="promise-text">จะเซอร์ไพรส์เธอด้วยของน่ารักๆ ให้เธอยิ้มได้อีกครั้ง</p>
+                </div>
+                
+                <div class="promise-card" id="promise4">
+                    <div class="promise-icon">🤝💬</div>
+                    <p class="promise-text">จะคุยกันดีๆ ไม่เก็บอะไรไว้คนเดียวนะ</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- เกจให้อภัย -->
+        <section class="forgiveness-meter">
+            <h3 class="meter-title">เธอยกโทษให้ฉันได้มั้ยอ่ะ? 🥺👉👈</h3>
+            
+            <div class="meter-container">
+                <div class="meter-fill" id="meterFill">ขอโทษค่าา~</div>
+            </div>
+            
+            <div class="meter-controls">
+                <button class="meter-btn" id="increaseBtn">
+                    <i class="fas fa-heart-circle-plus"></i> โอเค ยกโทษให้นะ!
+                </button>
+                <button class="meter-btn" id="decreaseBtn">
+                    <i class="fas fa-heart-crack"></i> ยังโกรธอยู่อีกนิดนึง...
+                </button>
+            </div>
+        </section>
+        
+        <!-- ส่วน Interactive -->
+        <section class="interactive-section">
+            <h3 class="interactive-title">กดๆ เล่นกันหน่อยมั้ยยย? ✨</h3>
+            
+            <div class="buttons-container">
+                <button class="action-btn forgive-btn" id="forgiveBtn">
+                    <i class="fas fa-heart-circle-check"></i> ให้อภัยเธอแล้ววว!
+                </button>
+                
+                <button class="action-btn hug-btn" id="hugBtn">
+                    <i class="fas fa-people-hug"></i> ขอกอดหน่อยยย~
+                </button>
+                
+                <button class="action-btn cute-btn" id="cuteBtn">
+                    <i class="fas fa-cat"></i> ทำตาปริบๆ ขอโทษ
+                </button>
+            </div>
+            
+            <div class="response-area" id="responseArea">
+                <p class="response-text">รอคำตอบจากเธออยู่นะ... ฉันจะรอ 😊</p>
+                <div style="font-size: 3rem; margin-top: 10px;">💘</div>
+            </div>
+        </section>
+        
+        <!-- ฟุตเตอร์ -->
+        <footer class="footer">
+            <p>เว็บนี้ทำขึ้นด้วยความจริงใจ อยากให้เธอรู้ว่าฉันรักเธอมากๆ</p>
+            <p style="margin-top: 15px;">
+                สัญญาว่าจะทำให้เธอยิ้มได้อีกครั้ง 
+                <span class="healing-heart" id="footerHeart">❤️</span>
+                รักเธอนะ สุดๆ เลยอ่ะ...
+            </p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // ===== ตัวแปรและอิลิเมนต์ต่างๆ =====
+        const floatingContainer = document.getElementById('floatingContainer');
+        const meterFill = document.getElementById('meterFill');
+        const increaseBtn = document.getElementById('increaseBtn');
+        const decreaseBtn = document.getElementById('decreaseBtn');
+        const forgiveBtn = document.getElementById('forgiveBtn');
+        const hugBtn = document.getElementById('hugBtn');
+        const cuteBtn = document.getElementById('cuteBtn');
+        const responseArea = document.getElementById('responseArea');
+        const sadFace = document.getElementById('sadFace');
+        const footerHeart = document.getElementById('footerHeart');
+        const promiseCards = document.querySelectorAll('.promise-card');
+        
+        // ===== ค่าตั้งต้น =====
+        let forgivenessLevel = 10;
+        let cuteMessages = [
+            "รู้มั้ยว่าเธอน่ารักที่สุดเลยนะ! ฉันจะไม่ทำให้เธอเสียใจอีกแล้ว",
+            "ขอโทษจริงๆ นะ... คราวหน้าฉันจะทำตัวดีกว่านี้ สัญญาเลย!",
+            "เธอคือของขวัญที่ดีที่สุดในชีวิตฉันเลย ฉันจะรักษาเธอไว้ดีๆ",
+            "อย่าโกรธฉันนานเลยนะ... ใจฉันเจ็บทุกครั้งที่เธอไม่ยิ้ม",
+            "ถ้าเธอยกโทษให้ฉัน ฉันจะพาเธอไปกินของโปรดเธอเลย!",
+            "เธอสำคัญกับฉันมากๆ เลยนะ ฉันจะไม่ทำลายความไว้ใจเธออีก"
+        ];
+        
+        let hugMessages = [
+            "กอดแน่นๆ เลยยย! 🤗 ฉันจะไม่ปล่อยเธอไปไหนแล้ว",
+            "อุ๊ปส์! กอดจังหวะนี้หวานมากเลยนะเนี่ย 💖",
+            "กอดเธอแล้วรู้สึกอุ่นใจสุดๆ ไปเลย 😊",
+            "ขอโทษที่ทำให้เธอเสียใจ... กอดนี้คือกอดขอโทษจากใจนะ"
+        ];
+        
+        // ===== สร้างของลอยน่ารักๆ =====
+        function createFloatingItems() {
+            const cuteEmojis = ['💖', '💕', '🌸', '✨', '🌟', '🥺', '🤗', '😊', '🐱', '🐶', '🍫', '🎀'];
+            
+            // สร้างน้อยๆ ก่อนแล้วค่อยเพิ่มเรื่อยๆ
+            for (let i = 0; i < 12; i++) {
+                setTimeout(() => {
+                    const item = document.createElement('div');
+                    item.className = 'floating';
+                    item.innerHTML = cuteEmojis[Math.floor(Math.random() * cuteEmojis.length)];
+                    
+                    item.style.left = Math.random() * 100 + 'vw';
+                    item.style.top = '100vh';
+                    item.style.fontSize = (Math.random() * 25 + 25) + 'px';
+                    item.style.opacity = 0.7 + Math.random() * 0.3;
+                    item.style.animationDuration = (Math.random() * 5 + 8) + 's';
+                    
+                    floatingContainer.appendChild(item);
+                    
+                    // ลบออกหลังจากลอยเสร็จ
+                    setTimeout(() => {
+                        if (item.parentNode) {
+                            item.parentNode.removeChild(item);
+                        }
+                    }, 8000);
+                }, i * 500);
+            }
+        }
+        
+        // ===== อัพเดทเกจ =====
+        function updateMeter() {
+            // คำนวณเปอร์เซ็นต์
+            const percent = Math.min(Math.max(forgivenessLevel, 0), 100);
+            meterFill.style.width = percent + '%';
+            
+            // เปลี่ยนข้อความตามระดับ
+            if (percent < 20) {
+                meterFill.textContent = "ยังโกรธอยู่เลยย... 🥺";
+                meterFill.style.background = "linear-gradient(to right, #ff6b6b, #ff4757)";
+            } else if (percent < 50) {
+                meterFill.textContent = "เริ่มใจอ่อนแล้วหรอ? 😊";
+                meterFill.style.background = "linear-gradient(to right, #ffa502, #ff7f00)";
+            } else if (percent < 80) {
+                meterFill.textContent = "เกือบให้อภัยแล้วว! 💖";
+                meterFill.style.background = "linear-gradient(to right, #2ed573, #1dd1a1)";
+            } else {
+                meterFill.textContent = "ให้อภัยเธอแล้ววว! 🎉💝";
+                meterFill.style.background = "linear-gradient(to right, #7bed9f, #2ed573, #1dd1a1)";
+            }
+            
+            // เอฟเฟกต์น่ารัก
+            meterFill.style.animation = 'none';
+            setTimeout(() => {
+                meterFill.style.animation = 'heartbeat 0.8s';
+            }, 10);
+        }
+        
+        // ===== แสดงข้อความตอบกลับ =====
+        function showResponse(message, emoji = '💖') {
+            responseArea.innerHTML = `
+                <p class="response-text">${message}</p>
+                <div style="font-size: 3.5rem; margin-top: 10px; animation: heartbeat 1.2s infinite;">${emoji}</div>
+            `;
+            
+            // เปลี่ยนสีพื้นหลังตามข้อความ
+            if (message.includes('ให้อภัย') || message.includes('ยกโทษ')) {
+                responseArea.style.background = 'linear-gradient(135deg, #d4fc79, #96e6a1)';
+                responseArea.style.borderColor = '#2ed573';
+                
+                // สร้างหัวใจลอยเยอะๆ
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => createFloatingHeart(), i * 100);
+                }
+            } else if (message.includes('กอด')) {
+                responseArea.style.background = 'linear-gradient(135deg, #a1c4fd, #c2e9fb)';
+                responseArea.style.borderColor = '#70a1ff';
+            } else {
+                responseArea.style.background = 'linear-gradient(135deg, #ffd6e7, #ffcce0)';
+                responseArea.style.borderColor = '#ff6b9d';
+            }
+            
+            // เอฟเฟกต์สั่นนิดหน่อย
+            responseArea.style.animation = 'none';
+            setTimeout(() => {
+                responseArea.style.animation = 'wobble 0.5s';
+            }, 10);
+        }
+        
+        // ===== สร้างหัวใจลอย =====
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '100vh';
+            heart.style.fontSize = (Math.random() * 35 + 30) + 'px';
+            heart.style.opacity = 0.9;
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            heart.style.color = '#ff6b9d';
+            heart.style.zIndex = '5';
+            
+            floatingContainer.appendChild(heart);
+            
+            setTimeout(() => {
+                if (heart.parentNode) {
+                    heart.parentNode.removeChild(heart);
+                }
+            }, 7000);
+        }
+        
+        // ===== สร้างของน่ารักลอย =====
+        function createFloatingCuties(count, emoji) {
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const item = document.createElement('div');
+                    item.className = 'floating';
+                    item.innerHTML = emoji;
+                    item.style.left = Math.random() * 100 + 'vw';
+                    item.style.top = '100vh';
+                    item.style.fontSize = (Math.random() * 30 + 30) + 'px';
+                    item.style.opacity = 0.8;
+                    item.style.animationDuration = (Math.random() * 4 + 5) + 's';
+                    item.style.zIndex = '5';
+                    
+                    floatingContainer.appendChild(item);
+                    
+                    setTimeout(() => {
+                        if (item.parentNode) {
+                            item.parentNode.removeChild(item);
+                        }
+                    }, 9000);
+                }, i * 150);
+            }
+        }
+        
+        // ===== ตั้งค่าอีเวนต์ =====
+        function setupEventListeners() {
+            // ปุ่มเพิ่มเลเวลให้อภัย
+            increaseBtn.addEventListener('click', function() {
+                forgivenessLevel += 12;
+                if (forgivenessLevel > 100) {
+                    forgivenessLevel = 100;
+                    showResponse('เย้ยยย! ขอบคุณที่ให้อภัยฉันนะ ฉันดีใจมากกก! 🥳🎉', '💝');
+                    sadFace.innerHTML = '🥰💖';
+                    sadFace.style.animation = 'heartbeat 1s infinite';
+                } else {
+                    const messages = [
+                        "ขอบคุณนะที่เริ่มให้อภัยฉันแล้ว 😊",
+                        "ดีใจจังเลยย! ฉันจะทำตัวดีๆ ให้เธอดู 💪",
+                        "เธอใจดีที่สุดเลยย! ฉันรักเธอนะ 💖"
+                    ];
+                    const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+                    showResponse(randomMsg, '🤗');
+                }
+                updateMeter();
+                
+                // เอฟเฟกต์ปุ่ม
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+            
+            // ปุ่มลดเลเวล (ถ้าเธอโกรธ)
+            decreaseBtn.addEventListener('click', function() {
+                forgivenessLevel -= 8;
+                if (forgivenessLevel < 0) forgivenessLevel = 0;
+                
+                if (forgivenessLevel <= 5) {
+                    showResponse('อ่าา... ฉันทำให้เธอโกรธมากเลยสินะ ฉันขอโทษจริงๆ 😭', '💔');
+                    sadFace.innerHTML = '😭💔';
+                } else {
+                    showResponse('เข้าใจๆ... ฉันคงทำให้เธอเสียใจมากเลย ฉันจะพยายามมากขึ้นนะ 🥺', '🤞');
+                }
+                updateMeter();
+                
+                // เอฟเฟกต์ปุ่ม
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+            
+            // ปุ่มให้อภัย
+            forgiveBtn.addEventListener('click', function() {
+                forgivenessLevel = 100;
+                updateMeter();
+                showResponse(
+                    'ว้าววว! ขอบคุณที่ให้อภัยฉันนะ! ฉันสัญญาว่าจะทำตัวดีๆ ให้เธอเห็นเลย! 🥰💝',
+                    '🎊'
+                );
+                
+                // เปลี่ยนหน้าตาเศร้าให้เป็นยิ้ม
+                sadFace.innerHTML = '🥰💖✨';
+                sadFace.style.animation = 'heartbeat 1.2s infinite';
+                
+                // สร้างของน่ารักลอยเยอะๆ
+                createFloatingCuties(25, '💖');
+                createFloatingCuties(15, '✨');
+                
+                // เปลี่ยนหัวใจในฟุตเตอร์
+                footerHeart.innerHTML = '💝';
+                footerHeart.style.animation = 'heartbeat 1s infinite';
+            });
+            
+            // ปุ่มขอกอด
+            hugBtn.addEventListener('click', function() {
+                const randomHugMsg = hugMessages[Math.floor(Math.random() * hugMessages.length)];
+                showResponse(randomHugMsg, '🤗');
+                
+                // สร้างอีโมจิกอดลอย
+                createFloatingCuties(10, '🤗');
+                createFloatingCuties(8, '💕');
+                
+                // เอฟเฟกต์ปุ่ม
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+            
+            // ปุ่มทำตาปริบๆ
+            cuteBtn.addEventListener('click', function() {
+                const randomCuteMsg = cuteMessages[Math.floor(Math.random() * cuteMessages.length)];
+                showResponse(randomCuteMsg + ' 🥺👉👈', '😽');
+                
+                // สร้างอีโมจิน่ารักลอย
+                createFloatingCuties(12, '🥺');
+                createFloatingCuties(10, '😽');
+                
+                // ทำตาปริบๆ จริงๆ
+                cuteBtn.innerHTML = '<i class="fas fa-cat"></i> กำลังทำตาปริบๆ...';
+                cuteBtn.disabled = true;
+                
+                setTimeout(() => {
+                    cuteBtn.innerHTML = '<i class="fas fa-cat"></i> ทำตาปริบๆ ขอโทษ';
+                    cuteBtn.disabled = false;
+                }, 1500);
+            });
+            
+            // การ์ดคำสัญญา
+            promiseCards.forEach((card, index) => {
+                card.addEventListener('click', function() {
+                    const promises = [
+                        "สัญญาว่าจะกอดเธอให้มากกว่านี้แน่นอน! 🤗",
+                        "ฉันจะเป็นผู้ฟังที่ดีที่สุดให้เธอเลย 👂❤️",
+                        "เตรียมเซอร์ไพรส์น่ารักๆ ไว้รอเลยย~ 🎁",
+                        "จะคุยกันดีๆ ไม่โกรธกันนานๆ อีกแล้ว 💬"
+                    ];
+                    
+                    const emojis = ['🤗', '👂❤️', '🎁', '💬'];
+                    
+                    this.style.animation = 'heartbeat 0.8s';
+                    showResponse(promises[index], emojis[index]);
+                    
+                    setTimeout(() => {
+                        this.style.animation = '';
+                    }, 800);
+                    
+                    // เพิ่มเลเวลให้อภัยเล็กน้อย
+                    forgivenessLevel += 5;
+                    if (forgivenessLevel > 100) forgivenessLevel = 100;
+                    updateMeter();
+                });
+            });
+            
+            // หน้าเศร้ากดได้
+            sadFace.addEventListener('click', function() {
+                if (this.innerHTML === '🥺💔') {
+                    this.innerHTML = '😢💔';
+                    showResponse('ฉันเศร้ามากเลยที่ทำให้เธอเสียใจ... ขอโทษจริงๆ นะ', '😢');
+                } else if (this.innerHTML === '😢💔') {
+                    this.innerHTML = '🥺💔';
+                    showResponse('รอเธอให้อภัยฉันอยู่นะ... ฉันจะรอ', '🥺');
+                } else {
+                    this.innerHTML = '🥰💖';
+                    showResponse('ยินดีด้วย! เธอให้อภัยฉันแล้ววว! 💝', '🎉');
+                }
+            });
+            
+            // หัวใจในฟุตเตอร์
+            footerHeart.addEventListener('click', function() {
+                this.style.animation = 'heartbeat 1s';
+                showResponse('รักเธอมากกก! มากที่สุดเลยนะ 💖', '💘');
+                
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 1000);
+                
+                createFloatingCuties(8, '💘');
+            });
+        }
+        
+        // ===== เริ่มต้น =====
+        function init() {
+            createFloatingItems();
+            updateMeter();
+            setupEventListeners();
+            
+            // สร้างของลอยทุก 15 วินาที
+            setInterval(createFloatingItems, 15000);
+            
+            // แสดงข้อความต้อนรับ
+            setTimeout(() => {
+                showResponse('สวัสดีค่าา! ขอบคุณที่เปิดหน้านี้นะ... ฉันขอโทษจริงๆ 🥺', '💌');
+            }, 800);
+            
+            // เปลี่ยนหัวใจในฟุตเตอร์บ้างบางครั้ง
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    const hearts = ['❤️', '💖', '💕', '💗', '💓', '💝'];
+                    const randomHeart = hearts[Math.floor(Math.random() * hearts.length)];
+                    footerHeart.innerHTML = randomHeart;
+                    footerHeart.style.animation = 'sparkle 0.5s';
+                    
+                    setTimeout(() => {
+                        footerHeart.style.animation = '';
+                    }, 500);
+                }
+            }, 3000);
+        }
+        
+        // ===== เริ่มเมื่อโหลดหน้าเสร็จ =====
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
